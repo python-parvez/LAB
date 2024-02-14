@@ -11,7 +11,7 @@ jobs:                                        # Creating a job section
      uses: actions/setup-java@v4                
       with
       distribution:'temurin'
-      java-version:'17' 
+      java-version:'21' 
    
    - name: Start Selenoid server             #step name and step
      uses: n-ton4/selenoid-github-action@master
