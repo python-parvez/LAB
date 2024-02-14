@@ -1,0 +1,34 @@
+name: Selenoid Installation and Startup
+
+on:
+  push:
+    # branches:
+    #   - main
+
+jobs:
+  selenoid:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install Temurin Java
+      run: |
+        sudo apt update
+        sudo apt install -y apt-transport-https ca-certificates wget dirmngr gnupg software-properties-common
+        sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0xB1998361219BD9C9
+        sudo add-apt-repository 'deb https://adoptopenjdk.jfrog.io/adoptopenjdk/deb focal main'
+        sudo apt update
+        sudo apt install -y adoptopenjdk-16-hotspot
+
+    - name: Install Docker
+      uses: docker/setup-docker@v2
+
+    - name: Install Selenoid
+      run: |
+        curl -s https://aerokube.com/cm/bash | bash \
+          && ./cm selenoid start --vnc
+
+    - name: Check Selenoid status
+      run: docker ps
