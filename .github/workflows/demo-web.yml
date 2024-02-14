@@ -8,7 +8,8 @@ jobs:                                        # Creating a job section
     # uses: actions/checkout@v4
    
    - name: setup up java                        # name is not mandatory but prefer givingname so people can understand clearly   
-     uses: actions/setup-java@v4                
+     #uses: actions/setup-java@v4
+     uses: actions/checkout@v4
       with
       distribution:'oracle'
       java-version:'11' 
