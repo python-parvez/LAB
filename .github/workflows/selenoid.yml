@@ -11,8 +11,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
-
+      uses: actions/checkout@v4
     - name: Install Temurin Java
       run: |
         sudo apt update
