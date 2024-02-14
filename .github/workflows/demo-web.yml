@@ -5,10 +5,10 @@ jobs:                                        # Creating a job section
   runs-on: ubuntu-latest                     # the providing what runner the job will be running on
   steps:                                     #setup the project are basically steps 
    - name: pull the project in the runner    # name is not mandatory but prefer giving name so people can understand clearly 
-     uses: actions/checkout@v4 
+     uses: actions/checkout@v3
    
    - name: setup up java                        # name is not mandatory but prefer givingname so people can understand clearly   
-     uses: actions/setup-java@v4                
+     uses: actions/setup-java@v3                
       with
       distribution:'temurin'
       java-version:'11' 
