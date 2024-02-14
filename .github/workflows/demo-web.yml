@@ -10,8 +10,8 @@ jobs:                                        # Creating a job section
    - name: setup up java                        # name is not mandatory but prefer givingname so people can understand clearly   
      uses: actions/setup-java@v3                
       with
-      distribution:'temurin'
-      java-version:'11' 
+      distribution:'oracle'
+      java-version:'21' 
    
    - name: Start Selenoid server             #step name and step
      uses: n-ton4/selenoid-github-action@master
