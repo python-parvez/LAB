@@ -1,0 +1,29 @@
+name: run web test in github actions         # this is optional
+on: workflow_dispatch                        # if you want to choose the tigger you need to mention on.  workflow_dispatch manually tigger it so i can choose workflow_dispatch
+jobs:                                        # Creating a job section  
+ run-web-test:                               # giving name of the job 
+  runs-on: ubuntu-latest                     # the providing what runner the job will be running on
+  steps:                                     #setup the project are basically steps 
+   - name: pull the project in the runner    # name is not mandatory but prefer giving name so people can understand clearly 
+     uses: actions/checkout@v4 
+   
+   - name: setup up java                        # name is not mandatory but prefer givingname so people can understand clearly   
+     uses: actions/setup-java@v4                
+      with
+      distribution:'temurin'
+      java-version:'21' 
+   
+   - name: Start Selenoid server             #step name and step
+     uses: n-ton4/selenoid-github-action@master
+     id: start-selenoid
+     continue-on-error: false
+     with:
+       version: 1.10.1
+       args: -limit 10
+       broser: chrome
+       last-version: 1
+
+   - name: run the web test                  # This step will run the test      
+     run: 
+       mvn clean test -Pweb -Dusername=${{secrets.Username}} -Dpassword=${{secrets.PASSWORD}}
+   
